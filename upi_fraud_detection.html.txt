@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eklavya | UPI Fraud Detection Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans antialiased">
+
+    <header class="border-b border-gray-800 bg-gray-900 sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-wider text-blue-500">EKLAVYA</h1>
+            <nav class="space-x-6 text-sm font-medium text-gray-400">
+                <a href="#overview" class="hover:text-blue-400 transition">Overview</a>
+                <a href="#pipeline" class="hover:text-blue-400 transition">ML Pipeline</a>
+                <a href="#scams" class="hover:text-blue-400 transition">Fraud Types</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="max-w-5xl mx-auto px-4 py-16 text-center md:text-left md:flex md:items-center md:justify-between gap-8">
+        <div class="max-w-2xl">
+            <span class="text-xs font-semibold tracking-widest text-blue-500 uppercase">Engineering & Analytics Showcase</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold mt-2 tracking-tight text-white">
+                Real-Time Fraud Detection for UPI Transactions
+            </h2>
+            <p class="mt-4 text-gray-400 text-lg leading-relaxed">
+                An intelligent data framework engineered to identify anomalous patterns, mitigate digital payment risks, and safeguard peer-to-peer financial ecosystems using machine learning.
+            </p>
+            <div class="mt-8">
+                <a href="#pipeline" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-6 py-3 rounded-lg shadow-md transition inline-block">
+                    Explore Technical Pipeline
+                </a>
+            </div>
+        </div>
+        <div class="hidden md:block w-80 h-80 bg-gradient-to-tr from-blue-600 to-indigo-900 rounded-2xl opacity-80 shadow-2xl relative overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center font-mono text-xs text-blue-300 p-6 whitespace-pre">
+{
+  "transaction_id": "TXN9839",
+  "status": "FLAGGED",
+  "risk_score": 0.94,
+  "anomaly": true
+}
+            </div>
+        </div>
+    </section>
+
+    <hr class="border-gray-800 max-w-5xl mx-auto">
+
+    <section id="overview" class="max-w-5xl mx-auto px-4 py-16">
+        <h3 class="text-2xl font-bold text-white mb-6">The Challenge</h3>
+        <p class="text-gray-300 leading-relaxed max-w-3xl">
+            With the massive surge in Unified Payments Interface (UPI) volume, malicious vectors like phishing, fake collect requests, and social engineering have scaled rapidly. Traditional rule-based defense layers are static and often fail against highly evolving attack signatures. This project leverages behavioral data analytics and adaptive algorithms to evaluate structural risks in real time.
+        </p>
+    </section>
+
+    <section id="pipeline" class="bg-gray-950 py-16">
+        <div class="max-w-5xl mx-auto px-4">
+            <h3 class="text-2xl font-bold text-white mb-2">Machine Learning Implementation Pipeline</h3>
+            <p class="text-sm text-gray-400 mb-10">How raw transactional streams transform into real-time risk classification.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                    <div class="text-blue-500 font-mono text-sm font-bold mb-3">01 / PREPROCESSING</div>
+                    <h4 class="text-lg font-semibold text-white mb-2">Ingestion & Handling</h4>
+                    <p class="text-gray-400 text-sm">Managing heavily imbalanced transaction logs using synthetic balancing methods (like SMOTE) and standardizing high-variance numerical data.</p>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                    <div class="text-blue-500 font-mono text-sm font-bold mb-3">02 / FEATURE ENG.</div>
+                    <h4 class="text-lg font-semibold text-white mb-2">Behavioral Attributes</h4>
+                    <p class="text-gray-400 text-sm">Extracting time-based indicators (e.g., late-night execution flags) and amount-to-balance ratios to build precise user risk profiles.</p>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                    <div class="text-blue-500 font-mono text-sm font-bold mb-3">03 / MODELLING</div>
+                    <h4 class="text-lg font-semibold text-white mb-2">Classification Engines</h4>
+                    <p class="text-gray-400 text-sm">Training robust tree ensembles like Random Forests or Neural Network architectures optimized for non-linear outlier detection patterns.</p>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                    <div class="text-blue-500 font-mono text-sm font-bold mb-3">04 / METRICS</div>
+                    <h4 class="text-lg font-semibold text-white mb-2">Precision & Recall</h4>
+                    <p class="text-gray-400 text-sm">Evaluating system reliability based on high F1-scores to ensure true fraud vectors are flagged while maintaining minimum false positives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="scams" class="max-w-5xl mx-auto px-4 py-16">
+        <h3 class="text-2xl font-bold text-white mb-2">Key UPI Fraud Vector Vectorization</h3>
+        <p class="text-sm text-gray-400 mb-8">Primary attack mechanics monitored by the detection architecture.</p>
+        
+        <div class="overflow-x-auto rounded-lg border border-gray-800">
+            <table class="w-full text-left border-collapse bg-gray-900 text-sm">
+                <thead>
+                    <tr class="bg-gray-950 border-b border-gray-800 text-gray-400 uppercase text-xs font-semibold tracking-wider">
+                        <th class="p-4">Fraud Vector</th>
+                        <th class="p-4">Modus Operandi</th>
+                        <th class="p-4">Primary Detection Feature</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-800 text-gray-300">
+                    <tr>
+                        <td class="p-4 font-semibold text-white">Collect Request Exploits</td>
+                        <td class="p-4">Disguising "Request Money" flags as fake cashbacks or processing refunds.</td>
+                        <td class="p-4 text-blue-400">Transaction Type + Sender Initiator Flag</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 font-semibold text-white">Phishing & Spoofing</td>
+                        <td class="p-4">Redirecting users via lookalike malicious domains or modified QR codes.</td>
+                        <td class="p-4 text-blue-400">Gateway URL Entropy & Domain Age</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 font-semibold text-white">Credential Harvester Apps</td>
+                        <td class="p-4">Tricking targets into using third-party remote screen-monitoring platforms.</td>
+                        <td class="p-4 text-blue-400">Active Device Process Logs / Overlays</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer class="border-t border-gray-800 bg-gray-950 py-8 text-center text-xs text-gray-500">
+        <div class="max-w-5xl mx-auto px-4">
+            <p>&copy; 2026 Eklavya. Built as a technical concept architecture project.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
