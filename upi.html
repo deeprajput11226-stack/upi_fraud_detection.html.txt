@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPI Fraud Link Checker</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0d1117;
+    color:white;
+}
+
+.container{
+    width:90%;
+    max-width:800px;
+    margin:auto;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+}
+
+.card{
+    background:#161b22;
+    margin-top:20px;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 0 10px rgba(0,255,255,0.2);
+}
+
+input{
+    width:95%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+}
+
+button{
+    padding:12px;
+    margin-top:10px;
+    margin-right:10px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:disabled{
+    opacity:0.5;
+}
+
+ul{
+    padding-left:20px;
+}
+
+#result{
+    font-size:24px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🛡 UPI Fraud Link Checker</h1>
+
+    <div class="card">
+
+        <h2>User Login</h2>
+
+        <input type="text"
+               id="username"
+               placeholder="Username">
+
+        <input type="password"
+               id="userpassword"
+               placeholder="Password">
+
+        <button onclick="login()">
+            Login
+        </button>
+
+        <p id="status">
+            Guest Mode Active
+        </p>
+
+        <p>
+            Demo Login : admin / 12345
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Scan UPI / Payment Link</h2>
+
+        <input type="text"
+               id="linkInput"
+               placeholder="Paste UPI or Payment Link Here">
+
+        <button onclick="scanLink()">
+            Scan Link
+        </button>
+
+        <h2 id="result">
+            Awaiting Scan...
+        </h2>
+
+        <p id="suggestion"></p>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Fraud Scan History (Login Required)</h2>
+
+        <ul id="history"></ul>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Cyber Security Tips</h2>
+
+        <ul>
+            <li>Never share OTP with anyone.</li>
+            <li>Avoid clicking unknown payment links.</li>
+            <li>Verify UPI IDs before sending money.</li>
+            <li>Banks never ask for passwords or OTPs.</li>
+            <li>Enable Two-Factor Authentication.</li>
+        </ul>
+
+    </div>
+
+    <div class="card">
+
+        <h2>About Developer</h2>
+
+        <p><b>Name:</b> Deep Bhadresh Rajput</p>
+
+        <p><b>Department:</b>
+        Mechanical Engineering</p>
+
+        <p><b>College:</b>
+        G.P.VALSAD</p>
+
+        <p><b>Internship Domain:</b>
+        Cyber Security</p>
+
+        <p><b>Project:</b>
+        UPI Fraud Link Checker</p>
+
+    </div>
+
+</div>
+
+<script>
+
+let loggedIn=false;
+let historyList=[];
+
+function login(){
+
+    let user=
+        document.getElementById("username").value;
+
+    let pass=
+        document.getElementById("userpassword").value;
+
+    if(user==="admin" &&
+       pass==="12345"){
+
+        loggedIn=true;
+
+        document.getElementById("status").innerHTML=
+        "✅ Logged In Successfully";
+
+        alert("Welcome "+user);
+
+    }
+
+    else{
+
+        alert("Invalid Credentials");
+
+    }
+
+}
+
+function scanLink(){
+
+    let link=
+    document.getElementById("linkInput")
+    .value.toLowerCase();
+
+    let risk=0;
+
+    let suspiciousWords=[
+        "otp",
+        "verify",
+        "free",
+        "cash",
+        "winner",
+        "gift",
+        "prize",
+        "urgent",
+        "click",
+        "bank-update",
+        "claim",
+        "offer",
+        "reward"
+    ];
+
+    suspiciousWords.forEach(function(word){
+
+        if(link.includes(word))
+            risk++;
+
+    });
+
+    if(!link.startsWith("https://"))
+        risk++;
+
+    let result=
+        document.getElementById("result");
+
+    let suggestion=
+        document.getElementById("suggestion");
+
+    if(risk<=1){
+
+        result.innerHTML="🟢 LOW RISK";
+        result.style.color="lime";
+
+        suggestion.innerHTML=
+        "Link appears relatively safe. Verify the sender before making payments.";
+
+    }
+
+    else if(risk<=3){
+
+        result.innerHTML="🟠 MEDIUM RISK";
+        result.style.color="orange";
+
+        suggestion.innerHTML=
+        "Be cautious. Verify sender details and never share OTP.";
+
+    }
+
+    else{
+
+        result.innerHTML=
+        "🔴 HIGH RISK / POSSIBLE FRAUD";
+
+        result.style.color="red";
+
+        suggestion.innerHTML=
+        "Do not click this link or make payments until verified.";
+
+    }
+
+    if(loggedIn && link!==""){
+
+        historyList.unshift(link);
+
+        if(historyList.length>5)
+            historyList.pop();
+
+        showHistory();
+
+    }
+
+}
+
+function showHistory(){
+
+    let history=
+        document.getElementById("history");
+
+    history.innerHTML="";
+
+    historyList.forEach(function(item){
+
+        history.innerHTML +=
+        "<li>"+item+"</li>";
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
